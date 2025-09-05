@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestorPro|Login</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="{% static 'app_login/style.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+           
+           
+            <div class="login-header">
+                <div class="logo">
+                        <img src="{% static 'dist/img/gp-vertical.png' %}" alt="Logo"> 
+                </div>
+                <p >Accede a tu cuenta de forma segura</p>
+            </div>
+
+            <!-- Formulario Django -->
+            <form class="login-form" id="loginForm" method="post" action="{% url 'app_login:login' %}" novalidate>
+
+                {% csrf_token %}
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger" style="color:red; margin-bottom:10px;">
+                            {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" name="usuario" required autocomplete="username">
+                    <span class="error-message" id="usuarioError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasena">Contraseña</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="contrasena" name="contrasena" required autocomplete="current-password">
+                        <button type="button" class="password-toggle" id="passwordToggle" aria-label="Mostrar u ocultar contraseña">
+                            <!-- Ojo abierto -->
+                            <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <!-- Ojo cerrado -->
+                            <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+                                <path d="M17.94 17.94A10.97 10.97 0 0 1 12 20c-7 0-11-8-11-8a21.5 21.5 0 0 1 5.06-6.88m3.63-2.12A10.97 10.97 0 0 1 12 4c7 0 11 8 11 8a21.5 21.5 0 0 1-2.92 4.06M1 1l22 22"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                const toggleBtn = document.getElementById("passwordToggle");
+                                const passwordInput = document.getElementById("contrasena");
+                                const eyeOpen = document.getElementById("eyeOpen");
+                                const eyeClosed = document.getElementById("eyeClosed");
+
+                                toggleBtn.addEventListener("click", function() {
+                                if (passwordInput.type === "password") {
+                                    passwordInput.type = "text"; // mostrar
+                                    eyeOpen.style.display = "none";
+                                    eyeClosed.style.display = "inline";
+                                } else {
+                                    passwordInput.type = "password"; // ocultar
+                                    eyeOpen.style.display = "inline";
+                                    eyeClosed.style.display = "none";
+                                }
+                                });
+                            });
+                        </script>
+
+                <div class="form-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="remember" name="remember">
+                        <span class="checkmark"></span>
+                        Recordar este dispositivo
+                    </label>
+                    <a href="#" class="forgot-link">¿Reset contraseña?</a>
+                </div>
+
+                <button type="submit" class="login-btn"><span class="btn-text">Ingresar</span><div class="btn-loader">
+                        <div class="spinner"></div>
+                    </div>
+                </button>
+            </form>
+
+            <div class="security-notice">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 1L3 3v4.5c0 2.89 2 5.5 5 6 3-0.5 5-3.11 5-6V3l-5-2z" stroke="#10B981" stroke-width="1.5" fill="none"/>
+                    <path d="M6 8l1.5 1.5L11 6" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Tu conexión está asegurada con cifrado SSL de 256 bits</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+   <!-- <script src="{% static 'app_login/script.js' %}"></script>-->
+
+</body>
+</html>

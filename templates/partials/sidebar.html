@@ -1,0 +1,140 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+      <a href="/" class="brand-link">
+        <img src="{% static 'dist/img/isotipo-gp.png' %}" alt="Logo"
+            class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">GestorPro</span>
+      </a>
+
+<!-- Sidebar -->
+  <div class="sidebar">
+    <!-- User panel 2-->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <!--<div class="image">
+            <div class="img-circle elevation-2 d-flex justify-content-center align-items-center bg-primary text-white"
+                  style="width: 36px; height: 36px; font-weight: bold; font-size: 16px;"> {{ usuario|first|upper }}{{ apellido|first|upper }}
+            </div>
+        </div>-->
+        <div class="info">
+          <a href="#" class="d-block">Soft. Gestion de Proyectos IT</a>
+        </div>
+      </div>
+
+    <!-- SidebarSearch Form -->
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        <!-- APP_DASHBOARD --> 
+        <li class="nav-item has-treeview {% if request.resolver_match.url_name in 'dashboard_v1 dashboard_v2' %}menu-open{% endif %}">
+                <a href="#" class="nav-link {% if request.resolver_match.url_name in 'dashboard_v1 dashboard_v2' %}active{% endif %}">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Dashboard<i class="right fas fa-angle-left"></i></p>
+                </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item"><a href="{% url 'app_dashboard:dashboard_v1' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard_v1' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span><p>Listar</p></a></li>
+                      <li class="nav-item"><a href="{% url 'app_dashboard:dashboard_v2' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard_v2' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span><p>Crear / Editar</p></a></li>
+                    </ul>
+        </li>
+        <!-- APP_PLANIFICACION  -->
+        <li class="nav-item has-treeview {% if request.resolver_match.url_name in 'planificacion_v1 planificacion_v2 ' %}menu-open{% endif %}">
+                <a href="#" class="nav-link {% if request.resolver_match.url_name in 'planificacion_v1 planificacion_v2 ' %}active{% endif %}">
+                    <i class="nav-icon far fa-calendar-alt"></i>
+                    <p>Planificacion<i class="right fas fa-angle-left"></i></p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item"><a href="{% url 'app_planificacion:planificacion_v1' %}"  class="nav-link {% if request.resolver_match.url_name == 'planificacion_v1' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span><p>Listar</p> </a></li>
+                  <li class="nav-item"><a href="{% url 'app_planificacion:planificacion_v2' %}"  class="nav-link {% if request.resolver_match.url_name == 'planificacion_v2' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span><p>Crear / Editar</p> </a></li>
+                </ul>
+        </li>
+
+        <!-- APP_EJECUCION-->
+        <li class="nav-item has-treeview {% if request.resolver_match.url_name in 'ejecucion_v1 ejecución_v2' %}menu-open{% endif %}">
+                <a href="#" class="nav-link {% if request.resolver_match.url_name in 'ejecucion_v1 ejecución_v2' %}active{% endif %}">
+                  <i class="nav-icon fas fa-clipboard-check"></i>
+                  <p>Ejecucion<i class="fas fa-angle-left right"></i></p>
+                </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a  href="{% url 'app_ejecucion:ejecucion_v1' %}"  class="nav-link {% if request.resolver_match.url_name == 'ejecucion_v1' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Listar</p></a></li>
+            <li class="nav-item"><a  href="{% url 'app_ejecucion:ejecucion_v2' %}"  class="nav-link {% if request.resolver_match.url_name == 'ejecucion_v2' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Crear / Editar</p></a></li>
+          </ul>
+        </li>
+
+        <!-- APP_EVALUACIÓN -->
+        <li class="nav-item has-treeview {% if request.resolver_match.url_name in 'evaluacion_v1 evaluacion_v2' %}menu-open{% endif %}">
+                <a href="#" class="nav-link {% if request.resolver_match.url_name in 'evaluacion_v1 evaluacion_v2' %}active{% endif %}">
+                  <i class="nav-icon fas fa-edit"></i>
+                    <p>Evaluación<i class="fas fa-angle-left right"></i></p>
+                </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a  href="{% url 'app_evaluacion:evaluacion_v1' %}" class="nav-link {% if request.resolver_match.url_name == 'evaluacion_v1' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Listar</p></a></li>
+            <li class="nav-item"><a  href="{% url 'app_evaluacion:evaluacion_v2' %}"  class="nav-link {% if request.resolver_match.url_name == 'evaluacion_v2' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Crear / Editar</p></a></li>
+          </ul>
+        </li>
+
+        <!-- APP_REPORTES -->
+        <li class="nav-item has-treeview {% if request.resolver_match.url_name in 'reportes_v1 reportes_v2' %}menu-open{% endif %}">
+                <a href="#" class="nav-link {% if request.resolver_match.url_name in 'reportes_v1 reportes_v2' %}active{% endif %}">
+                    <i class="nav-icon fas fa-file-alt"></i>
+                    <p>Reportes<i class="fas fa-angle-left right"></i></p>
+                </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a  href="{% url 'app_reportes:reportes_v1' %}"  class="nav-link {% if request.resolver_match.url_name == 'reportes_v1' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Listar</p></a></li>
+            <li class="nav-item"><a  href="{% url 'app_reportes:reportes_v2' %}"  class="nav-link {% if request.resolver_match.url_name == 'reportes_v2' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Crear / Editar</p></a></li>
+          </ul>
+        </li>
+
+        <!-- APP_CONFIGURACIÓN -->
+        <li class="nav-item has-treeview {% if request.resolver_match.url_name in 'configuracion_v1 configuracion_v2' %}menu-open{% endif %}">
+                <a href="#" class="nav-link {% if request.resolver_match.url_name in 'configuracion_v1 configuracion_v2' %}active{% endif %}">
+                  <i class="nav-icon fas fa-tools"></i>
+                  <p>Catalogo<i class="fas fa-angle-left right"></i></p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item"><a  href="{% url 'app_configuracion:configuracion_v1' %}"  class="nav-link {% if request.resolver_match.url_name == 'configuracion_v1' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Listar</p></a></li>
+                  <li class="nav-item"><a  href="{% url 'app_configuracion:configuracion_v2' %}"  class="nav-link {% if request.resolver_match.url_name == 'configuracion_v2' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Crear / Editar</p></a></li>
+                </ul>
+        </li>
+
+        <!-- APP_ADMINISTRAR -->
+        <li class="nav-item has-treeview {% if request.resolver_match.url_name in 'registrar_usuario lista_usuarios' %}menu-open{% endif %}">
+                <a href="#" class="nav-link {% if request.resolver_match.url_name in 'registrar_usuario lista_usuarios' %}active{% endif %}">
+                  <i class="nav-icon fas fa-user-cog"></i>
+                  <p>Administrar<i class="fas fa-angle-left right"></i></i></p>
+                </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a  href="{% url 'app_administrar:registrar_usuario' %}"  class="nav-link {% if request.resolver_match.url_name == 'registrar_usuario' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Usuarios</p></a></li>
+            <li class="nav-item"><a  href="{% url 'app_administrar:lista_usuarios' %}"  class="nav-link {% if request.resolver_match.url_name == 'lista_usuarios' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>lista_usuarios</p></a></li>
+          </ul>
+        </li>
+
+        <!-- APP_AYUDA_SOPORTE -->
+        <li class="nav-item has-treeview {% if request.resolver_match.url_name in 'soporte_v1 soporte_v2' %}menu-open{% endif %}">
+                <a href="#" class="nav-link {% if request.resolver_match.url_name in 'soporte_v1 soporte_v2' %}active{% endif %}">
+                  <i class="nav-icon fas fa-phone-alt"></i>
+                  <p>Soporte<i class="fas fa-angle-left right"></i></p>
+                </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a  href="{% url 'app_soporte:soporte_v1' %}"  class="nav-link {% if request.resolver_match.url_name == 'soporte_v1' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Listar POI</p></a></li>
+            <li class="nav-item"><a  href="{% url 'app_soporte:soporte_v2' %}"  class="nav-link {% if request.resolver_match.url_name == 'soporte_v2' %}active{% endif %}"><span class="nav-icon" style="display:inline-block;width: 30px;"></span> <p>Crear / Editar POI</p></a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+    <!-- /.sidebar -->
+</aside>

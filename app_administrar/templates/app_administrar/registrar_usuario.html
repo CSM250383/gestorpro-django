@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <h1 class="mb-4">Bienvenido al Panel de Administracion 🚀</h1>
+</div>
+
+<div class="container mt-4">
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Registrar Usuario</h3>
+    </div>
+    <form method="post">
+      {% csrf_token %}
+      <div class="card-body">
+        <div class="form-group">
+          <label>Nombre de Usuario</label>
+          {{ form.nombre_usuario }}
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          {{ form.contrasena }}
+        </div>
+        <div class="form-group">
+          <label>Correo</label>
+          {{ form.correo }}
+        </div>
+        <div class="form-group">
+          <label>Nombres</label>
+          {{ form.nombres }}
+        </div>
+        <div class="form-group">
+          <label>Apellidos</label>
+          {{ form.apellidos }}
+        </div>
+        <div class="form-check">
+          {{ form.esta_activo }}
+          <label class="form-check-label">Activo</label>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--Lista de usuarios -->
+<div class="container mt-4">
+  <div class="card card-secondary">
+    <div class="card-header">
+      <h3 class="card-title">Lista de Usuarios</h3>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Correo</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Activo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in usuarios %}
+          <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.nombre_usuario }}</td>
+            <td>{{ u.correo }}</td>
+            <td>{{ u.nombres }}</td>
+            <td>{{ u.apellidos }}</td>
+            <td>{{ u.esta_activo }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center">No hay usuarios registrados</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
