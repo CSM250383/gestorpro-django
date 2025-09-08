@@ -1,11 +1,10 @@
 from django.shortcuts import redirect
-from functools import wraps
-  
-def login_required_custom(funcion):
-    @wraps(funcion)
+
+def login_required(view_func):
+    """Decorador personalizado para requerir autenticación"""
     def wrapper(request, *args, **kwargs):
-        # request.session es dict-like, no función
-        if not request.session.get("usuario_id"):
-            return redirect("app_login:login")
-        return funcion(request, *args, **kwargs)
+        if request.session.get('usuario_autenticado'):
+            return view_func(request, *args, **kwargs)
+        else:
+            return redirect('app_login:login')
     return wrapper

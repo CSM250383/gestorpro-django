@@ -21,10 +21,8 @@ from django.views.generic import RedirectView
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-
-    # app_login
     path('', RedirectView.as_view(url='/login/', permanent=False)),
-    path('login/', include('app_login.urls')),
+    path('', include('app_login.urls')),  # ← Incluir en raíz
 
     # app_dashboard
     path('dashboard/', include("app_dashboard.urls")),
@@ -49,8 +47,6 @@ urlpatterns = [
 
     # app_administrar
     path('administrar/', include("app_administrar.urls")),
-
-
 
 ]
 

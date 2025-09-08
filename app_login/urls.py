@@ -1,16 +1,10 @@
 from django.urls import path
 from . import views
-from django.contrib.auth.views import LogoutView
+from django.views.generic import RedirectView
 
-app_name = 'app_login'  # <-- define el namespace
+app_name = 'app_login'
 
-urlpatterns = [
-
-    path('', views.login_view, name='login'),
+urlpatterns = [  # ← Sin espacios al inicio ✅
+    path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
-    
-  #  path('l2/', views.panel_view, name='panel'),
-
 ]
-
-
